@@ -5,6 +5,7 @@ package checker
 ///
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/sosodev/duration"
 	"os"
@@ -20,7 +21,24 @@ type FileCheck struct {
 	MinSize  int64
 }
 
+func byteCountSI(b int64) string {
+	const unit = 1000
+	if b < unit {
+		return fmt.Sprintf("%d B", b)
+	}
+	div, exp := int64(unit), 0
+	for n := b / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %cB",
+		float64(b)/float64(div), "kMGTPE"[exp])
+}
+
 func (p *FileCheck) CheckRule() *RuleResult {
+
+	msg := bytes.Buffer{}
+	msg.Write([]byte(""))
 
 	st, err := os.Stat(p.FilePath)
 	if err != nil {
@@ -39,20 +57,23 @@ func (p *FileCheck) CheckRule() *RuleResult {
 		}
 	}
 
+	msg.Write([]byte(fmt.Sprintf("size:%s, ", byteCountSI(st.Size()))))
+
 	if p.MaxAge > 0 {
 		if time.Now().Sub(st.ModTime()) > p.MaxAge {
 			return &RuleResult{
 				Passed: false,
 				Name:   p.Name,
-				Extra:  fmt.Sprintf("file is too old: %s", st.ModTime().String()),
+				Extra:  fmt.Sprintf("file is too old: %s, age: %s", st.ModTime().String(), time.Now().Sub(st.ModTime()).String()),
 			}
 		}
 	}
+	msg.Write([]byte(fmt.Sprintf("age:%s ", time.Now().Sub(st.ModTime()).String())))
 
 	return &RuleResult{
 		Passed: true,
 		Name:   p.Name,
-		Extra:  "",
+		Extra:  msg.String(),
 	}
 }
 

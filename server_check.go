@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-var Version = "v0.1.1"
+var Version = "v0.1.2"
 
 func processRequest(w http.ResponseWriter, r *http.Request) {
 	allPassed := true
@@ -24,7 +24,7 @@ func processRequest(w http.ResponseWriter, r *http.Request) {
 			b.Write([]byte(" ( ! ) "))
 		}
 		b.Write([]byte(" ->  "))
-		b.Write([]byte(rr.Name))
+		b.Write([]byte(fmt.Sprintf("%-24s", rr.Name)))
 		if len(rr.Extra) > 0 {
 			b.Write([]byte("   note: "))
 			b.Write([]byte(rr.Extra))
