@@ -1,3 +1,6 @@
 # github.com/mitchellh/go-ps v1.0.0
 ## explicit; go 1.13
 github.com/mitchellh/go-ps
+# github.com/sosodev/duration v1.0.1
+## explicit; go 1.17
+github.com/sosodev/duration

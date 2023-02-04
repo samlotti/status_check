@@ -33,6 +33,8 @@ func LoadConfig(configName string) {
 			GConfig.Port = sections[1]
 		case "process":
 			GConfig.Rules = append(GConfig.Rules, ProcessParser(sections))
+		case "file":
+			GConfig.Rules = append(GConfig.Rules, FileParser(sections))
 		default:
 			panic(fmt.Sprintf("Invalid rule entry: %s", line))
 		}
