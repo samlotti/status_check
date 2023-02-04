@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-var Version = "v0.1.0"
+var Version = "v0.1.1"
 
 func processRequest(w http.ResponseWriter, r *http.Request) {
 	allPassed := true
