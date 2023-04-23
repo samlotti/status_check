@@ -1,4 +1,4 @@
-module status_check
+module github.com/samlotti/status_check
 
 go 1.18
 

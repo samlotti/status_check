@@ -3,14 +3,14 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/samlotti/status_check/checker"
 	"log"
 	"net/http"
 	"os"
-	"status_check/checker"
 	"strings"
 )
 
-var Version = "v0.1.2"
+var Version = "v0.1.3"
 
 func processRequest(w http.ResponseWriter, r *http.Request) {
 	allPassed := true
