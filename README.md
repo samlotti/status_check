@@ -1,6 +1,7 @@
 # status_check 
 [![Go Report Card](https://goreportcard.com/badge/github.com/samlotti/status_check)](https://goreportcard.com/report/github.com/samlotti/status_check)
 [![Go Reference](https://pkg.go.dev/badge/github.com/samlotti/status_check.svg)](https://pkg.go.dev/github.com/samlotti/status_check)
+
 Easy to deploy and configure server status page.  One executable and a configuration file.
 
 This page can be accessed via the browse or ping monitoring services such as statuscake.com / pingdom.com.  Has helped me add monitoring on some smaller servers that primarily run as backend machines. 
