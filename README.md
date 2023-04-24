@@ -40,7 +40,7 @@ Step to deploy
 * create a config file
 * Start it with 
 ./server_check  
-* add a crontab entry is desired to keep it running and to restart if server reboots
+* add a crontab entry if desired to keep it running and to restart if server reboots
 ```cron
 * * * * * /home/bk/server_check/server_check  > /home/bk/server_check/cron.out  2>&1
 ```
